@@ -57,7 +57,7 @@ console.log(selfMadeMap(students, (st) => ({name: st.name; scores: st.scores}))
 //filter
 const selfMadeFilter = (array, condition) => { // true || false
   const restult = []
-  for (let i = 0; i < array.length, i++) {
+  for (let i = 0; i < array.length; i++) {
     if (conditionFn(array[i]) === true) {
       result.push(array[i])
     }
@@ -68,7 +68,7 @@ const selfMadeFilter = (array, condition) => { // true || false
 
 //push
 const selfMadePush = (array, ...els) => {
-  for (let i = 0; i < els.length, i++) {
+  for (let i = 0; i < els.length; i++) {
     array[array.length] = els[i]
   }
   return array.length
@@ -80,7 +80,7 @@ console.log(selfMadePush(arr, 6,7,8))
 console.log(arr)
 
 const selfMadeIncludes = (array, value) => {
-  for (let i = 0; i < array.length, i++) {
+  for (let i = 0; i < array.length; i++) {
        if (array[i] === value) {
          return true
        }
