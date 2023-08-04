@@ -58,6 +58,100 @@ const getNumberIfItsInArray = (arr, num) => {
 
 //5. Реализуйте функцию, которая возвращает массив,  в котором элементы исходного массива разбиты на вложенные массивы указанной длинны
 // ([1,2,3,4,5,6], 3) => [[1,2,3], [4,5,6]]
+
+    const splitArray1 = (arr, num) => {
+        let res = []
+        let shortArr = []
+        let counter = 0
+        const selfMadePush = (array, ...els) => {
+            for (let i = 0; i < els.length; i++) {
+                array[array.length] = els[i]
+            }
+        }
+        
+        if (arr.length < num) {
+            return arr
+        } else if (arr.length > num) {
+            for (let i = 0; i < arr.length + 1; i++) {
+                if (counter > 0 & counter % num === 0) {
+                    selfMadePush(res,shortArr)
+                    shortArr = []
+            } else res = res
+            counter++
+            selfMadePush(shortArr,arr[i])
+            } //return res
+        } else for (let i = 0; i < arr.length; i++) {
+            selfMadePush(shortArr,arr[i])
+            selfMadePush(res,shortArr)
+            shortArr = []
+        }
+        return res
+    }   
+    
+
+        console.log(splitArray1([1,2,3,4,5,6], 3))
+        console.log(splitArray1([1,2,3,4],4))
+        console.log(splitArray1([1,2,3,4],5))
+
+
+
+        const splitArray2 = (arr, num) => {
+
+            const selfMadePush = (array, ...els) => {
+                for (let i = 0; i < els.length; i++) {
+                    array[array.length] = els[i]
+                }
+            }
+    
+            let shortArr = []
+            let res = []
+            let counter = 0 
+            if (arr.length < num) {
+                return arr
+            } else if (arr.length > num) {
+                for (let i = 0; i < arr.length; i += num) {
+                    counter++ 
+                    for (let j = i; j < num * counter; j++) {
+                    selfMadePush(shortArr, arr[j])
+                    }
+                    selfMadePush(res, shortArr)
+                    shortArr = []
+                    }
+                return res
+            } else for (let i = 0; i < arr.length; i++) {
+                    selfMadePush(shortArr, arr[i])
+                    selfMadePush(res, shortArr)
+                    shortArr = []
+            } return res
+        }
+    
+    
+        console.log(splitArray2([1,2,3,4,5,6], 3))
+        console.log(splitArray2([1,2,3,4],4))
+        console.log(splitArray2([1,2,3,4],5))
+
+    // with methods of arr
+
+    function splitArrayWithSlice(arr, num) {
+        const res = [];
+        let shortArr = [];
+        if (arr.length != num) {
+            for (let i = 0; i < arr.length; i += num) {
+                const shortArr = arr.slice(i, i + num);
+                res.push(shortArr);
+            } 
+        } else for (let i = 0; i < arr.length; i++) {
+            shortArr.push(arr[i])
+            res.push(shortArr);
+            shortArr = []
+        } return res
+    }   
+    
+    console.log(splitArrayWithSlice([1,2,3,4,5,6], 3))
+    console.log(splitArrayWithSlice([1,2,3,4],4))
+    console.log(splitArrayWithSlice([1,2,3,4],5))
+
+
 //6. Реализуйте функцию, которая принимае в качестве параметра массив чисел и количество максимальных элементов.
 // Возвращает массив, сосотоящий из указанного количества максимальных элементов
 // ([1,22,3,4,5], 2) => [22, 5]
