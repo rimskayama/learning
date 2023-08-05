@@ -155,4 +155,28 @@ const getNumberIfItsInArray = (arr, num) => {
 //6. Реализуйте функцию, которая принимае в качестве параметра массив чисел и количество максимальных элементов.
 // Возвращает массив, сосотоящий из указанного количества максимальных элементов
 // ([1,22,3,4,5], 2) => [22, 5]
-// NB!!! При решении использовать только цикл, не испльзовать методы массивов и функцию Math.max()
+// NB!!! При решении использовать только цикл, не использовать методы массивов и функцию Math.max()
+
+
+    const getMaxElements = (arr, num) => {
+        let arrOfMaxElements = [] 
+        
+        //seflMadeSort
+        
+          for (let i = 0; i < arr.length; i++) {
+              for (let j = i; j < arr.length; j++) {
+                if (arr[i] < arr[j]) {
+                  let t = arr[i]
+                  arr[i] = arr[j]
+                  arr[j] = t
+                }
+              }
+          }
+        // new arr
+          for (let i = 0; i < num; i++) {
+            arrOfMaxElements[i] = arr[i]
+        } return arrOfMaxElements
+    }
+
+        
+        console.log(getMaxElements([1,22,3,4,5], 2))
